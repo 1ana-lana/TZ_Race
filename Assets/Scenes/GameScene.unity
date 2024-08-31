@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 953506270}
   - component: {fileID: 953506271}
   - component: {fileID: 953506272}
+  - component: {fileID: 953506273}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -436,12 +437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce896cc4d0bf214682689c1ea6d6b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roads:
-  - {fileID: 1935748884}
-  - {fileID: 484500255}
-  - {fileID: 646592902}
+  _roads:
   - {fileID: 1523659251}
   - {fileID: 505903761}
+  - {fileID: 1935748884}
+  - {fileID: 646592902}
+  - {fileID: 484500255}
   _spriteRenderer: {fileID: 505903763}
   _emptyRoad: {fileID: 21300000, guid: 19b130d37585d084d99db41ace468909, type: 3}
 --- !u!114 &953506272
@@ -457,6 +458,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _roadSpawner: {fileID: 953506271}
+--- !u!114 &953506273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953506269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7507bf3d5d0c6d0479c508d62aa0e435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacles:
+  - {fileID: 6605350725648776510, guid: 04a0f1e679f53734da36c597349f050e, type: 3}
+  - {fileID: 4136941447916129281, guid: 34e7b2aec8db13d49b952c325eb11462, type: 3}
+  - {fileID: 1154737866810772129, guid: 89843d5a74c538c4c86d4293719a248a, type: 3}
+  - {fileID: 1512811369952653941, guid: 6c88a9ddd318a804f83e23ad4fab42d7, type: 3}
+  - {fileID: 4086919981137258382, guid: 9d5296555fa691942a0f8c29b961e969, type: 3}
+  - {fileID: 8540705120627342871, guid: 91a63353d8abcbc46baa8400881633ff, type: 3}
+  _player: {fileID: 1301793809}
+  _roadLeftBoundary: -3.5
+  _roadRightBoundary: 3.5
 --- !u!1 &1301793803
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +540,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: c60657b3aebe44448baa396a0441da51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -603,6 +626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12659499f139da24b85d961c7fbd1d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roadLeftBoundary: -5
+  roadRightBoundary: 5
 --- !u!1001 &1523659249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,7 +797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1301793803}
-  _offset: {x: 0, y: 0, z: -10}
+  _offset: 5
 --- !u!1 &1935748884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7652855857750872557, guid: 7018cd76ed4646b4d8fc761d248c4da4, type: 3}

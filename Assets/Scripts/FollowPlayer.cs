@@ -7,10 +7,10 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private Vector3 _offset = new Vector3(0, 5, -7);
+    private float _offset = 5;
 
     void LateUpdate()
     {
-        transform.position = _player.transform.position + _offset;
+        transform.position = new Vector3(transform.position.x, _player.transform.position.y + _offset, transform.position.z); 
     }
 }
