@@ -37,8 +37,8 @@ public class ObstacleSpawner : MonoBehaviour
         int obstacleNumber = Random.Range(0, _obstacles.Count);
         GameObject obstaclePrefab = _obstacles[obstacleNumber];
 
-        Vector3 spawnPosition = _player.transform.position + Vector3.up * _spawnDistance;
-        spawnPosition.x = Random.Range(_roadLeftBoundary, _roadRightBoundary);
+        Vector3 spawnPosition = new Vector3(0, _player.transform.position.y + _spawnDistance, 0);
+        //spawnPosition.x = Random.Range(_roadLeftBoundary, _roadRightBoundary);
 
         GameObject newObstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
         Destroy(newObstacle, _obstacleLifetime); 

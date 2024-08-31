@@ -471,12 +471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacles:
-  - {fileID: 6605350725648776510, guid: 04a0f1e679f53734da36c597349f050e, type: 3}
-  - {fileID: 4136941447916129281, guid: 34e7b2aec8db13d49b952c325eb11462, type: 3}
-  - {fileID: 1154737866810772129, guid: 89843d5a74c538c4c86d4293719a248a, type: 3}
-  - {fileID: 1512811369952653941, guid: 6c88a9ddd318a804f83e23ad4fab42d7, type: 3}
-  - {fileID: 4086919981137258382, guid: 9d5296555fa691942a0f8c29b961e969, type: 3}
-  - {fileID: 8540705120627342871, guid: 91a63353d8abcbc46baa8400881633ff, type: 3}
+  - {fileID: 35152042226801021, guid: ace601fdd1eb8774eb7d9e2ac6c8cee4, type: 3}
+  - {fileID: 5949113268260280679, guid: 12f9c3dff4f0eeb4b8f1e15974dccd4d, type: 3}
+  - {fileID: 4836422553584265907, guid: d5976d928bb3cb8449c759a6f6b0c3cf, type: 3}
+  - {fileID: 7704615077036973651, guid: 3a0e1b2dc06537b4a9bb5704b86477be, type: 3}
   _player: {fileID: 1301793809}
   _roadLeftBoundary: -3.5
   _roadRightBoundary: 3.5

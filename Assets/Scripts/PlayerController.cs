@@ -12,21 +12,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float roadRightBoundary = 5f;
 
-    private float _speed = 0;
     private float _turnSpeed = 20;
 
-    public float Speed { get => _speed; private set { _speed = value; } }
+    public float Speed { get; private set; } 
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _speed = 20;
+            Speed = 20;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            _speed = 0;
+            Speed = 0;
         }
 
         Move();
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Vector2.up * Time.deltaTime * _speed);
+        transform.Translate(Vector2.up * Time.deltaTime * Speed);
         
         float horizontalInput = Input.GetAxis("Horizontal");
         //transform.Translate(Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime);
@@ -50,6 +49,27 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag(TriggerTag))
         {
             OnSectionTriggerEntered?.Invoke();
+        }
+
+        if (collision.gameObject.CompareTag(ObstacleType.ObstacleOil.ToString()))
+        {
+            Debug.Log(ObstacleType.ObstacleOil.ToString());
+        }
+
+        if (collision.gameObject.CompareTag(ObstacleType.RoadCrack.ToString()))
+        {
+            Debug.Log(ObstacleType.RoadCrack.ToString());
+        }
+
+        if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
+        {
+            Debug.Log(ObstacleType.Block.ToString());
+        }
+
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Debug.Log("Coin");
+            Destroy(collision.gameObject);
         }
     }
 }
