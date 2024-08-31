@@ -475,6 +475,11 @@ MonoBehaviour:
   - {fileID: 5949113268260280679, guid: 12f9c3dff4f0eeb4b8f1e15974dccd4d, type: 3}
   - {fileID: 4836422553584265907, guid: d5976d928bb3cb8449c759a6f6b0c3cf, type: 3}
   - {fileID: 7704615077036973651, guid: 3a0e1b2dc06537b4a9bb5704b86477be, type: 3}
+  _bonuses:
+  - {fileID: 4824655299822665110, guid: 6ef491dcc9902f64f9a7d3d600b083a1, type: 3}
+  - {fileID: 2330147245979149769, guid: d837c9982091a6a4bad95f3845d984e9, type: 3}
+  - {fileID: 1853693368864570487, guid: 6ee3eb82b2b04904ab83019b50a7cbe1, type: 3}
+  - {fileID: 8054096452942365996, guid: f3d9e67df09b33846baea081dc12f68b, type: 3}
   _player: {fileID: 1301793809}
   _roadLeftBoundary: -3.5
   _roadRightBoundary: 3.5

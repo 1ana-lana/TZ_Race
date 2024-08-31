@@ -1,12 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> _obstacles;
     [SerializeField]
+    private List<GameObject> _bonuses;
+   [SerializeField]
     private PlayerController _player;
     [SerializeField]
     private float _roadLeftBoundary = -3.5f;
@@ -15,8 +16,9 @@ public class ObstacleSpawner : MonoBehaviour
 
     private float _spawnDistance = 20f;
     private float _intervalBetweenSpawn = 1f;
-    private float _obstacleLifetime = 10f; 
     private float _nextSpawnTime;
+
+    private int spawnBonusePercent = 20;
 
     void Start()
     {
@@ -27,20 +29,31 @@ public class ObstacleSpawner : MonoBehaviour
     {
         if (Time.time >= _nextSpawnTime && _player.Speed != 0)
         {
-            SpawnObstacle();
+            ChooseSpawnObject();
             _nextSpawnTime = Time.time + _intervalBetweenSpawn;
         }
     }
-
-    void SpawnObstacle()
+    private void ChooseSpawnObject()
     {
-        int obstacleNumber = Random.Range(0, _obstacles.Count);
-        GameObject obstaclePrefab = _obstacles[obstacleNumber];
+        int spawnChance = Random.Range(0, 100);
+        if (spawnChance > spawnBonusePercent)
+        {
+            SpawnObject(_obstacles);
+        }
+        else
+        {
+            SpawnObject(_bonuses);
+        }
+    }
+
+    private void SpawnObject(List<GameObject> toSpawn)
+    {
+        int objectNumber = Random.Range(0, toSpawn.Count);
+        GameObject objectPrefab = toSpawn[objectNumber];
 
         Vector3 spawnPosition = new Vector3(0, _player.transform.position.y + _spawnDistance, 0);
         //spawnPosition.x = Random.Range(_roadLeftBoundary, _roadRightBoundary);
 
-        GameObject newObstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
-        Destroy(newObstacle, _obstacleLifetime); 
+        GameObject newObstacle = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
     }
 }

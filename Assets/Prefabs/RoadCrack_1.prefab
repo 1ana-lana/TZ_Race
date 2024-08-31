@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1512811369952653943}
   - component: {fileID: 1512811369952653940}
   - component: {fileID: 4083977000151822033}
-  - component: {fileID: -1407631344925731293}
+  - component: {fileID: -1263378633436526707}
   m_Layer: 0
   m_Name: RoadCrack_1
   m_TagString: RoadCrack
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.8910747, y: 5.2899995}
   m_EdgeRadius: 0
---- !u!114 &-1407631344925731293
+--- !u!114 &-1263378633436526707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4136941447916129282}
   - component: {fileID: 4136941447916129283}
   - component: {fileID: 4136941447916129280}
-  - component: {fileID: 6595650259328450930}
+  - component: {fileID: 6849285650785772030}
   m_Layer: 0
   m_Name: Oil_1
   m_TagString: ObstacleOil
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.8910747, y: 5.2899995}
   m_EdgeRadius: 0
---- !u!114 &6595650259328450930
+--- !u!114 &6849285650785772030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

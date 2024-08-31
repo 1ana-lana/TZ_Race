@@ -9,6 +9,9 @@ TagManager:
   - RoadCrack
   - Block
   - Coin
+  - Shield
+  - HP
+  - Nitro
   layers:
   - Default
   - TransparentFX

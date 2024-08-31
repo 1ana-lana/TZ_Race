@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     void OnBecameInvisible()
     {
+        Debug.Log("Object became invisible_"+gameObject.tag);
         Destroy(gameObject);
     }
 }
