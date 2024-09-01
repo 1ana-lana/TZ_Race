@@ -12,11 +12,12 @@ TagManager:
   - Shield
   - HP
   - Nitro
+  - Magnet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Coin
   - Water
   - UI
   - 

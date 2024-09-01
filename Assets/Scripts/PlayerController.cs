@@ -11,10 +11,13 @@ public class PlayerController : MonoBehaviour
     private float roadLeftBoundary = -5f;
     [SerializeField]
     private float roadRightBoundary = 5f;
+    [SerializeField]
+    private MagnetEffect _magnetEffect;
 
     private float _turnSpeed = 20;
+    private bool _magnetEffectActive = true;
 
-    public float Speed { get; private set; } 
+    public float Speed { get; private set; }
 
     private void Update()
     {
@@ -26,6 +29,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Speed = 0;
+        }
+
+        if (_magnetEffectActive)
+        {
+
         }
 
         Move();
@@ -69,7 +77,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Debug.Log("Coin");
-            Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Magnet"))
+        {
+            Debug.Log("Magnet");
+            _magnetEffect.ActivateMagnet();
+        }
+
+        Destroy(collision.gameObject);
     }
 }
