@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public event Action OnSectionTriggerEntered;
+    public event Action OnGameOver;
 
     private const string TriggerTag = "SectionTrigger";
 
@@ -15,7 +16,6 @@ public class PlayerController : MonoBehaviour
     private MagnetEffect _magnetEffect;
 
     private float _turnSpeed = 20;
-    private bool _magnetEffectActive = true;
 
     public float Speed { get; private set; }
 
@@ -29,11 +29,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Speed = 0;
-        }
-
-        if (_magnetEffectActive)
-        {
-
         }
 
         Move();
@@ -72,19 +67,21 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
         {
             Debug.Log(ObstacleType.Block.ToString());
+            OnGameOver?.Invoke();
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Coin"))
         {
             Debug.Log("Coin");
+            Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Magnet"))
         {
             Debug.Log("Magnet");
             _magnetEffect.ActivateMagnet();
+            Destroy(collision.gameObject);
         }
-
-        Destroy(collision.gameObject);
     }
 }
