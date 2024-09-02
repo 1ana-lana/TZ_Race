@@ -13,6 +13,8 @@ public class BonusEffect : MonoBehaviour
     protected bool isBonusActive = false;
     protected Coroutine _lifeTimeRoutine = null;
 
+    public bool IsBonusActive { get { return isBonusActive; } }
+
     public virtual void ActivateBonus(Action onAction, Action offAction)
     {
         if (isBonusActive)

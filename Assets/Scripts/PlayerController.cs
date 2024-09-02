@@ -23,15 +23,13 @@ public class PlayerController : MonoBehaviour
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
     private float _minSpeed = 0.1f;
-    private Coroutine _decelerationRoutine;
 
+    private Coroutine _decelerationRoutine;
     [SerializeField]
     private float _currentSpeed;
-    public float CurrentSpeed
-    {
-        get { return _currentSpeed; }
-        private set { _currentSpeed = value; }
-    }
+
+    public float CurrentSpeed { get { return _currentSpeed; } }
+
 
     private void Update()
     {
@@ -40,10 +38,16 @@ public class PlayerController : MonoBehaviour
             if (_decelerationRoutine != null)
             {
                 StopCoroutine(_decelerationRoutine);
-                Debug.LogError("StopCoroutine");
             }
 
-            CurrentSpeed = BaseSpeed;
+            if (_nitroEffect.IsBonusActive)
+            {
+                _currentSpeed = _nitroEffect.NitroSpeed;
+            }
+            else
+            {
+                _currentSpeed = BaseSpeed;
+            }
         }
 
         if (UnityEngine.Input.GetMouseButtonUp(0))
@@ -59,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
         if (UnityEngine.Input.GetMouseButtonDown(1))
         {
-            CurrentSpeed = 0;
+            _currentSpeed = 0;
         }
 
         Move();
@@ -67,12 +71,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Brake()
     {
-        while (CurrentSpeed > 0)
+        while (_currentSpeed > 0)
         {
-            CurrentSpeed -= _decelerationRate * Time.deltaTime;
-            if (CurrentSpeed < _minSpeed)
+            _currentSpeed -= _decelerationRate * Time.deltaTime;
+            if (_currentSpeed < _minSpeed)
             {
-                CurrentSpeed = 0;
+                _currentSpeed = 0;
             }
             yield return new WaitForEndOfFrame();
         }
@@ -80,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Vector2.up * Time.deltaTime * CurrentSpeed);
+        transform.Translate(Vector2.up * Time.deltaTime * _currentSpeed);
 
         float horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
         Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
@@ -132,8 +136,15 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Nitro"))
         {
             Destroy(collision.gameObject);
-            _nitroEffect.ActivateBonus(() => CurrentSpeed = _nitroEffect.NitroSpeed,
-                ()=> CurrentSpeed = BaseSpeed);
+            _nitroEffect.ActivateBonus(() => _currentSpeed = _nitroEffect.NitroSpeed,
+                () =>
+                {
+                    if (_currentSpeed != 0)
+                    {
+                        _currentSpeed = BaseSpeed;
+                    }
+                }
+           );
         }
 
         if (collision.gameObject.CompareTag("Shield"))
