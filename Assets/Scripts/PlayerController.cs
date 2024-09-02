@@ -33,10 +33,9 @@ public class PlayerController : MonoBehaviour
 
     public float CurrentSpeed { get { return _currentSpeed; } }
 
-
-    private void Update()
+    public void TapGas(bool state)
     {
-        if (UnityEngine.Input.GetMouseButtonDown(0))
+        if (state)
         {
             if (_decelerationRoutine != null)
             {
@@ -52,22 +51,24 @@ public class PlayerController : MonoBehaviour
                 _currentSpeed = BaseSpeed;
             }
         }
-
-        if (UnityEngine.Input.GetMouseButtonUp(0))
+        else
         {
             if (_decelerationRoutine != null)
             {
                 StopCoroutine(_decelerationRoutine);
-                Debug.LogError("StopCoroutine");
             }
 
             _decelerationRoutine = StartCoroutine(Brake());
         }
+    }
 
-        if (UnityEngine.Input.GetMouseButtonDown(1))
-        {
-            _currentSpeed = 0;
-        }
+    public void TapBrake()
+    {
+        _currentSpeed = 0;
+    }
+
+    private void Update()
+    {
 
         Move();
     }
