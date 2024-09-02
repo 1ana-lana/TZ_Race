@@ -382,13 +382,14 @@ GameObject:
   m_Component:
   - component: {fileID: 555068581}
   - component: {fileID: 555068582}
+  - component: {fileID: 555068583}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &555068581
 Transform:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555068580}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -456,6 +457,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &555068583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555068580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4e7916335f51a438b7005694ba8de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeTime: 15
+  _spriteRenderer: {fileID: 555068582}
 --- !u!1001 &646592900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,15 +648,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacles:
-  - {fileID: 5949113268260280679, guid: 12f9c3dff4f0eeb4b8f1e15974dccd4d, type: 3}
+  - {fileID: 35152042226801021, guid: ace601fdd1eb8774eb7d9e2ac6c8cee4, type: 3}
   - {fileID: 5949113268260280679, guid: 12f9c3dff4f0eeb4b8f1e15974dccd4d, type: 3}
   - {fileID: 4836422553584265907, guid: d5976d928bb3cb8449c759a6f6b0c3cf, type: 3}
   - {fileID: 7704615077036973651, guid: 3a0e1b2dc06537b4a9bb5704b86477be, type: 3}
   _bonuses:
+  - {fileID: 4824655299822665110, guid: 6ef491dcc9902f64f9a7d3d600b083a1, type: 3}
+  - {fileID: 2330147245979149769, guid: d837c9982091a6a4bad95f3845d984e9, type: 3}
   - {fileID: 1853693368864570487, guid: 6ee3eb82b2b04904ab83019b50a7cbe1, type: 3}
-  - {fileID: 1853693368864570487, guid: 6ee3eb82b2b04904ab83019b50a7cbe1, type: 3}
-  - {fileID: 1853693368864570487, guid: 6ee3eb82b2b04904ab83019b50a7cbe1, type: 3}
-  - {fileID: 1853693368864570487, guid: 6ee3eb82b2b04904ab83019b50a7cbe1, type: 3}
+  - {fileID: 8054096452942365996, guid: f3d9e67df09b33846baea081dc12f68b, type: 3}
   _player: {fileID: 1301793809}
   _roadLeftBoundary: -3.5
   _roadRightBoundary: 3.5
@@ -796,6 +811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _magnetEffect: {fileID: 1646815380}
   _nitroEffect: {fileID: 1534509294}
+  _shieldEffect: {fileID: 555068583}
   roadLeftBoundary: -5
   roadRightBoundary: 5
   _currentSpeed: 0

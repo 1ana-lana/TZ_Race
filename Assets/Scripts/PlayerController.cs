@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private NitroEffect _nitroEffect;
     [SerializeField]
+    private BonusEffect _shieldEffect;
+
+    [SerializeField]
     private float roadLeftBoundary = -5f;
     [SerializeField]
     private float roadRightBoundary = 5f;
@@ -103,16 +106,26 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ObstacleType.ObstacleOil.ToString()))
         {
-            Debug.Log(ObstacleType.ObstacleOil.ToString());
+            if (_shieldEffect.IsBonusActive)
+            {
+                return;
+            }
         }
 
         if (collision.gameObject.CompareTag(ObstacleType.RoadCrack.ToString()))
         {
-            Debug.Log(ObstacleType.RoadCrack.ToString());
+            if (_shieldEffect.IsBonusActive)
+            {
+                return;
+            }
         }
 
         if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
         {
+            if (_shieldEffect.IsBonusActive)
+            {
+                return;
+            }
             OnGameOver?.Invoke();
             Destroy(gameObject);
         }
@@ -149,6 +162,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Shield"))
         {
+            _shieldEffect.ActivateBonus(() => { }, () => { });
             Destroy(collision.gameObject);
         }
     }
