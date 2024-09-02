@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private MagnetEffect _magnetEffect;
     [SerializeField]
+    private NitroEffect _nitroEffect;
+    [SerializeField]
     private float roadLeftBoundary = -5f;
     [SerializeField]
     private float roadRightBoundary = 5f;
@@ -21,17 +23,23 @@ public class PlayerController : MonoBehaviour
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
     private float _minSpeed = 0.1f;
-    private Coroutine decelerationRoutine;
+    private Coroutine _decelerationRoutine;
 
-    public float CurrentSpeed { get; private set; }
+    [SerializeField]
+    private float _currentSpeed;
+    public float CurrentSpeed
+    {
+        get { return _currentSpeed; }
+        private set { _currentSpeed = value; }
+    }
 
     private void Update()
     {
         if (UnityEngine.Input.GetMouseButtonDown(0))
         {
-            if (decelerationRoutine != null)
+            if (_decelerationRoutine != null)
             {
-                StopCoroutine(decelerationRoutine);
+                StopCoroutine(_decelerationRoutine);
                 Debug.LogError("StopCoroutine");
             }
 
@@ -40,13 +48,13 @@ public class PlayerController : MonoBehaviour
 
         if (UnityEngine.Input.GetMouseButtonUp(0))
         {
-            if (decelerationRoutine != null)
+            if (_decelerationRoutine != null)
             {
-                StopCoroutine(decelerationRoutine);
+                StopCoroutine(_decelerationRoutine);
                 Debug.LogError("StopCoroutine");
             }
 
-            decelerationRoutine = StartCoroutine(Brake());
+            _decelerationRoutine = StartCoroutine(Brake());
         }
 
         if (UnityEngine.Input.GetMouseButtonDown(1))
@@ -101,21 +109,35 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
         {
-            Debug.Log(ObstacleType.Block.ToString());
             OnGameOver?.Invoke();
             Destroy(gameObject);
         }
 
         if (collision.gameObject.CompareTag("Coin"))
         {
-            Debug.Log("Coin");
             Destroy(collision.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Magnet"))
         {
-            Debug.Log("Magnet");
-            _magnetEffect.ActivateBonus();
+            _magnetEffect.ActivateBonus(() => { }, () => { });
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("HP"))
+        {
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Nitro"))
+        {
+            Destroy(collision.gameObject);
+            _nitroEffect.ActivateBonus(() => CurrentSpeed = _nitroEffect.NitroSpeed,
+                ()=> CurrentSpeed = BaseSpeed);
+        }
+
+        if (collision.gameObject.CompareTag("Shield"))
+        {
             Destroy(collision.gameObject);
         }
     }

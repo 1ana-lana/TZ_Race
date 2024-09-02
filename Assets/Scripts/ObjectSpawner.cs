@@ -27,7 +27,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
-        if (Time.time >= _nextSpawnTime && _player.Speed != 0)
+        if (Time.time >= _nextSpawnTime && _player.CurrentSpeed != 0)
         {
             ChooseSpawnObject();
             _nextSpawnTime = Time.time + _intervalBetweenSpawn;
