@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,39 +9,72 @@ public class PlayerController : MonoBehaviour
     public event Action OnGameOver;
 
     private const string TriggerTag = "SectionTrigger";
+    private const float BaseSpeed = 20f;
 
+    [SerializeField]
+    private MagnetEffect _magnetEffect;
     [SerializeField]
     private float roadLeftBoundary = -5f;
     [SerializeField]
     private float roadRightBoundary = 5f;
-    [SerializeField]
-    private MagnetEffect _magnetEffect;
 
     private float _turnSpeed = 20;
+    private float _decelerationRate = 5f;
+    private float _minSpeed = 0.1f;
+    private Coroutine decelerationRoutine;
 
-    public float Speed { get; private set; }
+    public float CurrentSpeed { get; private set; }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (UnityEngine.Input.GetMouseButtonDown(0))
         {
-            Speed = 20;
+            if (decelerationRoutine != null)
+            {
+                StopCoroutine(decelerationRoutine);
+                Debug.LogError("StopCoroutine");
+            }
+
+            CurrentSpeed = BaseSpeed;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (UnityEngine.Input.GetMouseButtonUp(0))
         {
-            Speed = 0;
+            if (decelerationRoutine != null)
+            {
+                StopCoroutine(decelerationRoutine);
+                Debug.LogError("StopCoroutine");
+            }
+
+            decelerationRoutine = StartCoroutine(Brake());
+        }
+
+        if (UnityEngine.Input.GetMouseButtonDown(1))
+        {
+            CurrentSpeed = 0;
         }
 
         Move();
     }
 
+    private IEnumerator Brake()
+    {
+        while (CurrentSpeed > 0)
+        {
+            CurrentSpeed -= _decelerationRate * Time.deltaTime;
+            if (CurrentSpeed < _minSpeed)
+            {
+                CurrentSpeed = 0;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     private void Move()
     {
-        transform.Translate(Vector2.up * Time.deltaTime * Speed);
-        
-        float horizontalInput = Input.GetAxis("Horizontal");
-        //transform.Translate(Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime);
+        transform.Translate(Vector2.up * Time.deltaTime * CurrentSpeed);
+
+        float horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
         Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
 
         newPosition.x = Mathf.Clamp(newPosition.x, roadLeftBoundary, roadRightBoundary);
@@ -80,7 +115,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Magnet"))
         {
             Debug.Log("Magnet");
-            _magnetEffect.ActivateMagnet();
+            _magnetEffect.ActivateBonus();
             Destroy(collision.gameObject);
         }
     }
