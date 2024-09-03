@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
     private float _minSpeed = 0.1f;
+    private float horizontalInput = 0;
+
 
     private Coroutine _decelerationRoutine;
     [SerializeField]
@@ -67,6 +69,26 @@ public class PlayerController : MonoBehaviour
         _currentSpeed = 0;
     }
 
+    public void TouchСarSteeringWheel(bool touch, Vector2 touchPosition)
+    {
+        if (!touch)
+        {
+            horizontalInput = 0;
+            return;
+        }
+
+        if (touchPosition.x < 0)
+        {
+            horizontalInput = -1;
+
+        }
+        else
+        {
+            horizontalInput = 1;
+
+        }
+    }
+
     private void Update()
     {
 
@@ -90,7 +112,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.Translate(Vector2.up * Time.deltaTime * _currentSpeed);
 
-        float horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
         Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
 
         newPosition.x = Mathf.Clamp(newPosition.x, roadLeftBoundary, roadRightBoundary);

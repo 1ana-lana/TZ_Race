@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
@@ -14,6 +14,12 @@ public class GameController : MonoBehaviour
         _playerController.OnSectionTriggerEntered += _playerController_OnTriggerEntered;
         _uiController.OnTapBrake += UiController_OnTapBrake;
         _uiController.OnTapGas += UiController_OnTapGas;
+        _uiController.OnTouchСarSteeringWheel += UiController_OnTouchСarSteeringWheel;
+    }
+
+    private void UiController_OnTouchСarSteeringWheel(bool touch, Vector2 touchPosition)
+    {
+        _playerController.TouchСarSteeringWheel(touch, touchPosition);
     }
 
     private void UiController_OnTapGas(bool state)
