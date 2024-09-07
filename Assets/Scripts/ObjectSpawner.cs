@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -15,44 +15,47 @@ public class ObjectSpawner : MonoBehaviour
     private float _roadRightBoundary = 3.5f;
 
     private float _spawnDistance = 20f;
-    private float _intervalBetweenSpawn = 1f;
-    private float _nextSpawnTime;
+    private float _distanceBetweenSpawns = 30f;
+    private float _lastSpawnPosition;
 
     private int spawnBonusePercent = 20;
 
     void Start()
     {
-        _nextSpawnTime = Time.time + _intervalBetweenSpawn;
+        _lastSpawnPosition = _player.transform.position.y;
     }
 
     void Update()
     {
-        if (Time.time >= _nextSpawnTime && _player.CurrentSpeed != 0)
+        if (_player.transform.position.y > _lastSpawnPosition + _distanceBetweenSpawns)
         {
-            ChooseSpawnObject();
-            _nextSpawnTime = Time.time + _intervalBetweenSpawn;
+            Vector3 spawnPosition = new Vector3(_player.transform.position.x, _player.transform.position.y + _spawnDistance, _player.transform.position.z);
+
+            ChooseSpawnObject(spawnPosition);
+
+            _lastSpawnPosition = _player.transform.position.y;
         }
     }
-    private void ChooseSpawnObject()
+
+    private void ChooseSpawnObject(Vector3 spawnPosition)
     {
         int spawnChance = Random.Range(0, 100);
         if (spawnChance > spawnBonusePercent)
         {
-            SpawnObject(_obstacles);
+            SpawnObject(_obstacles, spawnPosition);
         }
         else
         {
-            SpawnObject(_bonuses);
+            SpawnObject(_bonuses, spawnPosition);
         }
     }
 
-    private void SpawnObject(List<GameObject> toSpawn)
+    private void SpawnObject(List<GameObject> toSpawn, Vector3 spawnPosition)
     {
         int objectNumber = Random.Range(0, toSpawn.Count);
         GameObject objectPrefab = toSpawn[objectNumber];
 
-        Vector3 spawnPosition = new Vector3(0, _player.transform.position.y + _spawnDistance, 0);
-        //spawnPosition.x = Random.Range(_roadLeftBoundary, _roadRightBoundary);
+        spawnPosition.x = Random.Range(_roadLeftBoundary, _roadRightBoundary);
 
         GameObject newObstacle = Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
     }
