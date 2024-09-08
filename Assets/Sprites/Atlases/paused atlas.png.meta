@@ -120,9 +120,9 @@ TextureImporter:
       name: paused atlas_0
       rect:
         serializedVersion: 2
-        x: 363
+        x: 391
         y: 270
-        width: 1471
+        width: 1443
         height: 1151
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -188,7 +188,7 @@ TextureImporter:
         width: 607
         height: 323
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 17, y: 0, z: 0, w: 15}
       outline: []
       physicsShape: []
