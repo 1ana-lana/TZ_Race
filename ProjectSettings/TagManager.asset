@@ -13,6 +13,7 @@ TagManager:
   - HP
   - Nitro
   - Magnet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Coin
   - Water
   - UI
-  - 
+  - Obstacle
   - 
   - 
   - 

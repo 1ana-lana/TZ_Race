@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4086919981137258383}
   - component: {fileID: 8777049487285064983}
   - component: {fileID: 4443983006695933035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RoadCrack_2
   m_TagString: RoadCrack
   m_Icon: {fileID: 0}

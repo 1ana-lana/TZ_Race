@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4136941447916129283}
   - component: {fileID: 4136941447916129280}
   - component: {fileID: 6849285650785772030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Oil_1
   m_TagString: ObstacleOil
   m_Icon: {fileID: 0}
