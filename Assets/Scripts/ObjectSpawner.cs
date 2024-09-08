@@ -27,7 +27,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
-        if (_player.transform.position.y > _lastSpawnPosition + _distanceBetweenSpawns)
+        if (_player != null && _player.transform.position.y > _lastSpawnPosition + _distanceBetweenSpawns)
         {
             Vector3 spawnPosition = new Vector3(_player.transform.position.x, _player.transform.position.y + _spawnDistance, _player.transform.position.z);
 
