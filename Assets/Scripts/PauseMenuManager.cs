@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    public event Action OnRestartGame;
-
     [SerializeField]
     private Button _restart;
     [SerializeField]
@@ -29,7 +25,8 @@ public class PauseMenuManager : MonoBehaviour
 
     private void RestartGame()
     {
-        OnRestartGame?.Invoke();
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     private void ClosePanel()
