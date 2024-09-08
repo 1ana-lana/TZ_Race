@@ -7,18 +7,23 @@ public class ObjectSpawner : MonoBehaviour
     private List<GameObject> _obstacles;
     [SerializeField]
     private List<GameObject> _bonuses;
-   [SerializeField]
-    private PlayerController _player;
     [SerializeField]
     private float _roadLeftBoundary = -3.5f;
     [SerializeField]
     private float _roadRightBoundary = 3.5f;
+
+    private PlayerController _player;
 
     private float _spawnDistance = 20f;
     private float _distanceBetweenSpawns = 30f;
     private float _lastSpawnPosition;
 
     private int spawnBonusePercent = 20;
+
+    public void Initialize(PlayerController player)
+    {
+        _player = player;
+    }
 
     void Start()
     {

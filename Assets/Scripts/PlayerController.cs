@@ -91,6 +91,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if (UnityEngine.Input.GetMouseButtonDown(0))
+        {
+            _currentSpeed = BaseSpeed;
+        }
+
+        if (UnityEngine.Input.GetMouseButtonUp(0))
+        {
+            _currentSpeed = 0;
+        }
+#endif
 
         Move();
     }
@@ -112,6 +123,9 @@ public class PlayerController : MonoBehaviour
     {
         transform.Translate(Vector2.up * Time.deltaTime * _currentSpeed);
 
+#if UNITY_EDITOR
+        float horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
+#endif
         Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
 
         newPosition.x = Mathf.Clamp(newPosition.x, roadLeftBoundary, roadRightBoundary);
