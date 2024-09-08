@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0b75716c593acc14badc5c0cbfb52f00
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - SF Compact
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 524f49718953e3044866cc3f73843719, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

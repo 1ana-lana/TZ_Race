@@ -398,7 +398,7 @@ TextureImporter:
         width: 168
         height: 189
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -406,6 +406,27 @@ TextureImporter:
       bones: []
       spriteID: d0971eeefab8179419cb3bc6af4046a7
       internalID: -1775783767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game assets atlas_14
+      rect:
+        serializedVersion: 2
+        x: 2390
+        y: 1880
+        width: 154
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c70ca89a51b0124ba0ed925660cc002
+      internalID: -1617787963
       vertices: []
       indices: 
       edges: []
@@ -427,6 +448,7 @@ TextureImporter:
       Game assets atlas_11: -1230243105
       Game assets atlas_12: 1167768169
       Game assets atlas_13: -1775783767
+      Game assets atlas_14: -1617787963
       Game assets atlas_2: -1417021159
       Game assets atlas_3: -1580822120
       Game assets atlas_4: -1132066195
