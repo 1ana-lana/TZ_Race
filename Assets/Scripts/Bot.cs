@@ -1,13 +1,10 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
     public event Action OnBecameInvisible;
 
-    [SerializeField]
-    private Renderer _objectRenderer;
     [SerializeField]
     private float _speed = 5f;
     [SerializeField]
@@ -111,13 +108,11 @@ public class Bot : MonoBehaviour
         if (IsObjectInCameraView() && !_wasVisible)
         {
             _wasVisible = true;
-            Debug.Log("_wasVisible");
         }
         else if (!IsObjectInCameraView() && _wasVisible)
         {
             _wasVisible = false;
             OnBecameInvisible?.Invoke();
-            Debug.Log("OnBecameInvisible");
             Destroy(gameObject);
         }
     }

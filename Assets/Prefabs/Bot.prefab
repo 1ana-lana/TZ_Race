@@ -146,7 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff7875dfaa76a5408d50aa8f77bd58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionDistance: 10
-  avoidSpeed: 5
-  forwardSpeed: 15
-  maxAvoidDistance: 3
+  _objectRenderer: {fileID: 2782362149232529215}
+  _speed: 5
+  _stopDistance: 2
+  _obstacleAvoidanceDistance: 5
+  _avoidSpeed: 2
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _objectCollider: {fileID: 2249970966152644481}
