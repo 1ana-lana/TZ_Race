@@ -95,12 +95,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (UnityEngine.Input.GetMouseButtonDown(0))
+        if (UnityEngine.Input.GetKeyDown(KeyCode.UpArrow))
         {
             _currentSpeed = BaseSpeed;
         }
 
-        if (UnityEngine.Input.GetMouseButtonUp(0))
+        if (UnityEngine.Input.GetKeyUp(KeyCode.UpArrow))
         {
             _currentSpeed = 0;
         }

@@ -42,6 +42,7 @@ public class GameOverMenuManager : MonoBehaviour
     private void RestartGame()
     {
         Scene currentScene = SceneManager.GetActiveScene();
+        Time.timeScale = 1;
         SceneManager.LoadScene(currentScene.name);
     }
 }
