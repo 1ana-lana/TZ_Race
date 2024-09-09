@@ -9,12 +9,27 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private UIController _uiController;
 
+    private int _score;
+
     private void Awake()
     {
+        _playerController.OnGetCoin += PlayerController_OnGetCoin;
+        _playerController.OnGameOver += PlayerController_OnGameOver;
         _playerController.OnSectionTriggerEntered += _playerController_OnTriggerEntered;
         _uiController.OnTapBrake += UiController_OnTapBrake;
         _uiController.OnTapGas += UiController_OnTapGas;
         _uiController.OnTouchСarSteeringWheel += UiController_OnTouchСarSteeringWheel;
+    }
+
+    private void PlayerController_OnGetCoin()
+    {
+        _score++;
+        _uiController.UpdateScore(_score);
+    }
+
+    private void PlayerController_OnGameOver()
+    {
+        _uiController.ActiveGameOverMenu(_score);
     }
 
     private void UiController_OnTouchСarSteeringWheel(bool touch, Vector2 touchPosition)

@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,11 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Button _pauseButton;
     [SerializeField]
-    private PauseMenuManager pauseMenuPanel;
+    private PauseMenuManager _pauseMenuPanel;
+    [SerializeField]
+    private GameOverMenuManager _gameOverMenuManager;
+    [SerializeField]
+    private TMP_Text _currentScore;
 
     private void Awake()
     {
@@ -27,9 +32,21 @@ public class UIController : MonoBehaviour
         _pauseButton.onClick.AddListener(ActivePauseMenu);
     }
 
-    public void ActivePauseMenu()
+    public void UpdateScore(int score)
     {
-        pauseMenuPanel.gameObject.SetActive(true);
+        _currentScore.text = "Score:" + Environment.NewLine + score;
+    }
+
+    private void ActivePauseMenu()
+    {
+        _pauseMenuPanel.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ActiveGameOverMenu(int currentScore)
+    {
+        _gameOverMenuManager.SetScore(currentScore);
+        _gameOverMenuManager.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
 

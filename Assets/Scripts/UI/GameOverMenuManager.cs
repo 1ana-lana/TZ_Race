@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,9 +17,15 @@ public class GameOverMenuManager : MonoBehaviour
     [SerializeField]
     private TMP_Text _bestScore;
 
+    private HighScoreManager _highScoreManager = new HighScoreManager();
+
     public void SetScore(int score)
     {
+        int bestScore = _highScoreManager.Load();
+        _currentScore.text = "Your Score:" + Environment.NewLine + score;
+        _bestScore.text = "Best Score:" + Environment.NewLine + bestScore;
 
+        _highScoreManager.Save(score);
     }
 
     private void Awake()

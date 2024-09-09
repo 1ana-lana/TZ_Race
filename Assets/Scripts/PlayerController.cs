@@ -5,6 +5,7 @@ using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action OnGetCoin;
     public event Action OnSectionTriggerEntered;
     public event Action OnGameOver;
 
@@ -22,6 +23,9 @@ public class PlayerController : MonoBehaviour
     private float roadLeftBoundary = -5f;
     [SerializeField]
     private float roadRightBoundary = 5f;
+
+    [SerializeField]
+    private GameObject enemyCollisionImagePrefab;
 
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
@@ -124,7 +128,7 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector2.up * Time.deltaTime * _currentSpeed);
 
 #if UNITY_EDITOR
-        float horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
+        horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
 #endif
         Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
 
@@ -163,12 +167,25 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             OnGameOver?.Invoke();
-            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (_shieldEffect.IsBonusActive)
+            {
+                return;
+            }
+
+            Vector2 contactPoint = collision.ClosestPoint(transform.position);
+            Instantiate(enemyCollisionImagePrefab, contactPoint, Quaternion.identity);
+
+            OnGameOver?.Invoke();
         }
 
         if (collision.gameObject.CompareTag("Coin"))
         {
             Destroy(collision.gameObject);
+            OnGetCoin?.Invoke();
         }
 
         if (collision.gameObject.CompareTag("Magnet"))
