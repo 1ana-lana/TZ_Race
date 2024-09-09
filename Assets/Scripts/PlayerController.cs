@@ -31,11 +31,10 @@ public class PlayerController : MonoBehaviour
     private float _decelerationRate = 5f;
     private float _minSpeed = 0.1f;
     private float horizontalInput = 0;
-
+    private float _currentSpeed;
 
     private Coroutine _decelerationRoutine;
-    [SerializeField]
-    private float _currentSpeed;
+    private Coroutine _slowdownRoutine;
 
     public float CurrentSpeed { get { return _currentSpeed; } }
 
@@ -137,6 +136,13 @@ public class PlayerController : MonoBehaviour
         transform.position = newPosition;
     }
 
+    private IEnumerator Slowdown()
+    {
+        _currentSpeed = BaseSpeed / 2;
+        yield return new WaitForSeconds(10f);
+        _currentSpeed = BaseSpeed;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(TriggerTag))
@@ -146,10 +152,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ObstacleType.ObstacleOil.ToString()))
         {
-            if (_shieldEffect.IsBonusActive)
-            {
-                return;
-            }
+            ActiveSlowdown();
         }
 
         if (collision.gameObject.CompareTag(ObstacleType.RoadCrack.ToString()))
@@ -218,5 +221,20 @@ public class PlayerController : MonoBehaviour
             _shieldEffect.ActivateBonus(() => { }, () => { });
             Destroy(collision.gameObject);
         }
+    }
+
+    private void ActiveSlowdown()
+    {
+        if (_shieldEffect.IsBonusActive)
+        {
+            return;
+        }
+
+        if (_slowdownRoutine != null)
+        {
+            StopCoroutine(_slowdownRoutine);
+        }
+
+        _slowdownRoutine = StartCoroutine(Slowdown());
     }
 }
