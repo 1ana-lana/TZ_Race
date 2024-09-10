@@ -97,7 +97,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.28, y: 4.02}
+  m_Size: {x: 4, y: 6}
   m_EdgeRadius: 0
 --- !u!50 &133016528427753568
 Rigidbody2D:
@@ -146,8 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff7875dfaa76a5408d50aa8f77bd58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectRenderer: {fileID: 2782362149232529215}
-  _speed: 5
+  _speed: 20
   _stopDistance: 2
   _obstacleAvoidanceDistance: 5
   _avoidSpeed: 2

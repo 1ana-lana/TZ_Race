@@ -8,7 +8,7 @@ public class Bot : MonoBehaviour
     [SerializeField]
     private float _speed = 5f;
     [SerializeField]
-    private float _stopDistance = 2f;
+    private float _stopDistance = 4f;
     [SerializeField]
     private float _obstacleAvoidanceDistance = 5f;
     [SerializeField]
@@ -55,10 +55,6 @@ public class Bot : MonoBehaviour
                 ChasePlayer();
             }
         }
-        else
-        {
-            EndGame();
-        }
     }
 
     private void ChasePlayer()
@@ -96,11 +92,6 @@ public class Bot : MonoBehaviour
         }
 
         transform.Translate(avoidDirection * _avoidSpeed * Time.deltaTime);
-    }
-
-    private void EndGame()
-    {
-        Debug.Log("Игра завершена! Полицейская машина догнала игрока.");
     }
 
     private void CheckVisible()
