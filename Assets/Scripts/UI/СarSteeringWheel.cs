@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class СarSteeringWheel : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public event Action<bool, Vector2> OnTouch;
+
     [SerializeField]
     private RectTransform _buttonRectTransform;
 

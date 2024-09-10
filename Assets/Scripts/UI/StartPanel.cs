@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StartPanel : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text startText;
+    private TMP_Text _startText;
 
     private void Start()
     {
@@ -21,7 +19,7 @@ public class StartPanel : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             i--;
-            startText.text = i.ToString();
+            _startText.text = i.ToString();
         }
         gameObject.SetActive(false);
     }

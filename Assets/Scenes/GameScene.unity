@@ -3542,7 +3542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301793803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -12, z: 0}
+  m_LocalPosition: {x: 0, y: -3.8000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3614,9 +3614,9 @@ MonoBehaviour:
   _magnetEffect: {fileID: 1646815380}
   _nitroEffect: {fileID: 1534509294}
   _shieldEffect: {fileID: 555068583}
-  roadLeftBoundary: -5
-  roadRightBoundary: 5
-  enemyCollisionImagePrefab: {fileID: 8942042721178641191, guid: cf7bac9b846b38842b0f57dc2ceba90c, type: 3}
+  _roadLeftBoundary: -5
+  _roadRightBoundary: 5
+  _enemyCollisionImagePrefab: {fileID: 8942042721178641191, guid: cf7bac9b846b38842b0f57dc2ceba90c, type: 3}
 --- !u!1 &1366570355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5037,7 +5037,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729925714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: -10}
+  m_LocalPosition: {x: 0, y: 1.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5515,7 +5515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5664e49a68022c74e8d1ec8278f0f9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startText: {fileID: 1899039043}
+  _startText: {fileID: 1899039043}
 --- !u!114 &2069224857
 MonoBehaviour:
   m_ObjectHideFlags: 0

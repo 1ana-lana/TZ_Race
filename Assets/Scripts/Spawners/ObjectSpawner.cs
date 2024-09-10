@@ -18,7 +18,7 @@ public class ObjectSpawner : MonoBehaviour
     private float _distanceBetweenSpawns = 15f;
     private float _lastSpawnPosition;
 
-    private int spawnBonusePercent = 20;
+    private int _spawnBonusePercent = 30;
 
     public void Initialize(PlayerController player)
     {
@@ -45,7 +45,7 @@ public class ObjectSpawner : MonoBehaviour
     private void ChooseSpawnObject(Vector3 spawnPosition)
     {
         int spawnChance = Random.Range(0, 100);
-        if (spawnChance > spawnBonusePercent)
+        if (spawnChance > _spawnBonusePercent)
         {
             SpawnObject(_obstacles, spawnPosition);
         }

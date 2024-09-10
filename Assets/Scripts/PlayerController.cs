@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,12 +23,12 @@ public class PlayerController : MonoBehaviour
     private BonusEffect _shieldEffect;
 
     [SerializeField]
-    private float roadLeftBoundary = -5f;
+    private float _roadLeftBoundary = -5f;
     [SerializeField]
-    private float roadRightBoundary = 5f;
+    private float _roadRightBoundary = 5f;
 
     [SerializeField]
-    private GameObject enemyCollisionImagePrefab;
+    private GameObject _enemyCollisionImagePrefab;
 
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
@@ -153,7 +152,7 @@ public class PlayerController : MonoBehaviour
 #endif
         Vector3 newPosition = transform.position + Vector3.right * _horizontalInput * _turnSpeed * Time.deltaTime;
 
-        newPosition.x = Mathf.Clamp(newPosition.x, roadLeftBoundary, roadRightBoundary);
+        newPosition.x = Mathf.Clamp(newPosition.x, _roadLeftBoundary, _roadRightBoundary);
 
         transform.position = newPosition;
     }
@@ -210,7 +209,7 @@ public class PlayerController : MonoBehaviour
             }
 
             Vector2 contactPoint = collision.ClosestPoint(transform.position);
-            Instantiate(enemyCollisionImagePrefab, contactPoint, Quaternion.identity);
+            Instantiate(_enemyCollisionImagePrefab, contactPoint, Quaternion.identity);
 
             OnGameOver?.Invoke();
         }
