@@ -6,11 +6,14 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     public event Action OnGetCoin;
+    public event Action<float> OnHealthChanged;
     public event Action OnSectionTriggerEntered;
     public event Action OnGameOver;
 
     private const string TriggerTag = "SectionTrigger";
     private const float BaseSpeed = 20f;
+    private const float FullHealthPoints = 1f;
+    private const float HeartHealthPoints = 0.25f;
 
     [SerializeField]
     private MagnetEffect _magnetEffect;
@@ -30,8 +33,9 @@ public class PlayerController : MonoBehaviour
     private float _turnSpeed = 20;
     private float _decelerationRate = 5f;
     private float _minSpeed = 0.1f;
-    private float horizontalInput = 0;
+    private float _horizontalInput = 0;
     private float _currentSpeed;
+    private float _health = 1f;
 
     private Coroutine _decelerationRoutine;
     private Coroutine _slowdownRoutine;
@@ -76,18 +80,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!touch)
         {
-            horizontalInput = 0;
+            _horizontalInput = 0;
             return;
         }
 
         if (touchPosition.x < 0)
         {
-            horizontalInput = -1;
+            _horizontalInput = -1;
 
         }
         else
         {
-            horizontalInput = 1;
+            _horizontalInput = 1;
 
         }
     }
@@ -122,14 +126,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ChangeHealth(float healthPoint)
+    {
+        _health += healthPoint;
+        if (_health <= 0)
+        {
+            _health = 0;
+            OnGameOver?.Invoke();
+        }
+
+        if (_health > FullHealthPoints)
+        {
+            _health = FullHealthPoints;
+        }
+
+        OnHealthChanged?.Invoke(_health);
+    }
+
     private void Move()
     {
         transform.Translate(Vector2.up * Time.deltaTime * _currentSpeed);
 
 #if UNITY_EDITOR
-        horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
+        _horizontalInput = UnityEngine.Input.GetAxis("Horizontal");
 #endif
-        Vector3 newPosition = transform.position + Vector3.right * horizontalInput * _turnSpeed * Time.deltaTime;
+        Vector3 newPosition = transform.position + Vector3.right * _horizontalInput * _turnSpeed * Time.deltaTime;
 
         newPosition.x = Mathf.Clamp(newPosition.x, roadLeftBoundary, roadRightBoundary);
 
@@ -152,6 +173,11 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ObstacleType.ObstacleOil.ToString()))
         {
+            if (_shieldEffect.IsBonusActive)
+            {
+                return;
+            }
+
             ActiveSlowdown();
         }
 
@@ -161,6 +187,9 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
+
+            ChangeHealth(-HeartHealthPoints);
+            ActiveSlowdown();
         }
 
         if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
@@ -199,6 +228,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("HP"))
         {
+            ChangeHealth(HeartHealthPoints);
             Destroy(collision.gameObject);
         }
 
@@ -225,11 +255,6 @@ public class PlayerController : MonoBehaviour
 
     private void ActiveSlowdown()
     {
-        if (_shieldEffect.IsBonusActive)
-        {
-            return;
-        }
-
         if (_slowdownRoutine != null)
         {
             StopCoroutine(_slowdownRoutine);

@@ -14,11 +14,18 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         _playerController.OnGetCoin += PlayerController_OnGetCoin;
+        _playerController.OnHealthChanged += PlayerController_OnHealthChanged;
         _playerController.OnGameOver += PlayerController_OnGameOver;
         _playerController.OnSectionTriggerEntered += _playerController_OnTriggerEntered;
+        
         _uiController.OnTapBrake += UiController_OnTapBrake;
         _uiController.OnTapGas += UiController_OnTapGas;
         _uiController.OnTouchСarSteeringWheel += UiController_OnTouchСarSteeringWheel;
+    }
+
+    private void PlayerController_OnHealthChanged(float health)
+    {
+        _uiController.ChangeHealthBar(health);
     }
 
     private void PlayerController_OnGetCoin()

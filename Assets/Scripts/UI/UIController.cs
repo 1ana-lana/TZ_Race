@@ -23,6 +23,8 @@ public class UIController : MonoBehaviour
     private GameOverMenuManager _gameOverMenuManager;
     [SerializeField]
     private TMP_Text _currentScore;
+    [SerializeField]
+    private FillImageController healthFilledImage;
 
     private void Awake()
     {
@@ -37,16 +39,21 @@ public class UIController : MonoBehaviour
         _currentScore.text = "Score:" + Environment.NewLine + score;
     }
 
-    private void ActivePauseMenu()
-    {
-        _pauseMenuPanel.gameObject.SetActive(true);
-        Time.timeScale = 0;
-    }
-
     public void ActiveGameOverMenu(int currentScore)
     {
         _gameOverMenuManager.SetScore(currentScore);
         _gameOverMenuManager.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void ChangeHealthBar(float currentPoints)
+    {
+        healthFilledImage.SetNewState(currentPoints);
+    }
+
+    private void ActivePauseMenu()
+    {
+        _pauseMenuPanel.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
 
