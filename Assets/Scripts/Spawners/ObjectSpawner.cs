@@ -15,7 +15,7 @@ public class ObjectSpawner : MonoBehaviour
     private PlayerController _player;
 
     private float _spawnDistance = 20f;
-    private float _distanceBetweenSpawns = 30f;
+    private float _distanceBetweenSpawns = 15f;
     private float _lastSpawnPosition;
 
     private int spawnBonusePercent = 20;
