@@ -28,5 +28,11 @@ public class FillImageController : MonoBehaviour
         }
 
         _filledImage.fillAmount = targetFill;
+
+        if (targetFill == 0)
+        {
+            gameObject.SetActive(false);
+            _filledImage.fillAmount = 1;
+        }
     }
 }

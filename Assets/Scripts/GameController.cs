@@ -15,12 +15,18 @@ public class GameController : MonoBehaviour
     {
         _playerController.OnGetCoin += PlayerController_OnGetCoin;
         _playerController.OnHealthChanged += PlayerController_OnHealthChanged;
+        _playerController.OnBonusOn += PlayerController_OnBonusOn;
         _playerController.OnGameOver += PlayerController_OnGameOver;
         _playerController.OnSectionTriggerEntered += _playerController_OnTriggerEntered;
         
         _uiController.OnTapBrake += UiController_OnTapBrake;
         _uiController.OnTapGas += UiController_OnTapGas;
         _uiController.OnTouchСarSteeringWheel += UiController_OnTouchСarSteeringWheel;
+    }
+
+    private void PlayerController_OnBonusOn(CollisionObjectType type)
+    {
+        _uiController.ActiveBonusBar(type);
     }
 
     private void PlayerController_OnHealthChanged(float health)

@@ -456,9 +456,9 @@ TextureImporter:
       name: Game assets atlas_16
       rect:
         serializedVersion: 2
-        x: 3139
+        x: 3141
         y: 1884
-        width: 737
+        width: 740
         height: 59
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -494,6 +494,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Game assets atlas_18
+      rect:
+        serializedVersion: 2
+        x: 3992
+        y: 1708
+        width: 724
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a7c8db672c3ad4a9533c871fbf52ed
+      internalID: -967688192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game assets atlas_19
+      rect:
+        serializedVersion: 2
+        x: 3996
+        y: 1825
+        width: 725
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73523b0b003e8854080109b3790b0712
+      internalID: 1584505492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game assets atlas_20
+      rect:
+        serializedVersion: 2
+        x: 3992
+        y: 1611
+        width: 729
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2721bcb1ceaf1764897793434b6bf8e1
+      internalID: -1897920182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -515,7 +578,10 @@ TextureImporter:
       Game assets atlas_15: -691805591
       Game assets atlas_16: -311799399
       Game assets atlas_17: -905843130
+      Game assets atlas_18: -967688192
+      Game assets atlas_19: 1584505492
       Game assets atlas_2: -1417021159
+      Game assets atlas_20: -1897920182
       Game assets atlas_3: -1580822120
       Game assets atlas_4: -1132066195
       Game assets atlas_5: -2033868873

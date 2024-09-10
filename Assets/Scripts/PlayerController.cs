@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public event Action<float> OnHealthChanged;
     public event Action OnSectionTriggerEntered;
     public event Action OnGameOver;
+    public event Action<CollisionObjectType> OnBonusOn;
 
     private const string TriggerTag = "SectionTrigger";
     private const float BaseSpeed = 20f;
@@ -171,7 +172,7 @@ public class PlayerController : MonoBehaviour
             OnSectionTriggerEntered?.Invoke();
         }
 
-        if (collision.gameObject.CompareTag(ObstacleType.ObstacleOil.ToString()))
+        if (collision.gameObject.CompareTag(CollisionObjectType.ObstacleOil.ToString()))
         {
             if (_shieldEffect.IsBonusActive)
             {
@@ -181,7 +182,7 @@ public class PlayerController : MonoBehaviour
             ActiveSlowdown();
         }
 
-        if (collision.gameObject.CompareTag(ObstacleType.RoadCrack.ToString()))
+        if (collision.gameObject.CompareTag(CollisionObjectType.RoadCrack.ToString()))
         {
             if (_shieldEffect.IsBonusActive)
             {
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour
             ActiveSlowdown();
         }
 
-        if (collision.gameObject.CompareTag(ObstacleType.Block.ToString()))
+        if (collision.gameObject.CompareTag(CollisionObjectType.Block.ToString()))
         {
             if (_shieldEffect.IsBonusActive)
             {
@@ -220,16 +221,17 @@ public class PlayerController : MonoBehaviour
             OnGetCoin?.Invoke();
         }
 
-        if (collision.gameObject.CompareTag("Magnet"))
-        {
-            _magnetEffect.ActivateBonus(() => { }, () => { });
-            Destroy(collision.gameObject);
-        }
-
         if (collision.gameObject.CompareTag("HP"))
         {
             ChangeHealth(HeartHealthPoints);
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Magnet"))
+        {
+            _magnetEffect.ActivateBonus(() => { }, () => { });
+            Destroy(collision.gameObject);
+            OnBonusOn?.Invoke(CollisionObjectType.Magnet);
         }
 
         if (collision.gameObject.CompareTag("Nitro"))
@@ -244,12 +246,14 @@ public class PlayerController : MonoBehaviour
                     }
                 }
            );
+            OnBonusOn?.Invoke(CollisionObjectType.Nitro);
         }
 
         if (collision.gameObject.CompareTag("Shield"))
         {
             _shieldEffect.ActivateBonus(() => { }, () => { });
             Destroy(collision.gameObject);
+            OnBonusOn?.Invoke(CollisionObjectType.Shield);
         }
     }
 

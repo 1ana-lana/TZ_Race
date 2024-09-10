@@ -24,7 +24,13 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private TMP_Text _currentScore;
     [SerializeField]
-    private FillImageController healthFilledImage;
+    private FillImageController _healthFilledImage;
+    [SerializeField]
+    private FillImageController _shieldFilledImage;
+    [SerializeField]
+    private FillImageController _magnetFilledImage;
+    [SerializeField]
+    private FillImageController _nitroFilledImage;
 
     private void Awake()
     {
@@ -46,9 +52,28 @@ public class UIController : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void ActiveBonusBar(CollisionObjectType type)
+    {
+        switch (type)
+        {
+            case CollisionObjectType.Shield:
+                _shieldFilledImage.gameObject.SetActive(true);
+                _shieldFilledImage.SetNewState(0);
+                break;
+            case CollisionObjectType.Magnet:
+                _magnetFilledImage.gameObject.SetActive(true);
+                _magnetFilledImage.SetNewState(0);
+                break;
+            case CollisionObjectType.Nitro:
+                _nitroFilledImage.gameObject.SetActive(true);
+                _nitroFilledImage.SetNewState(0);
+                break;
+        }
+    }
+
     public void ChangeHealthBar(float currentPoints)
     {
-        healthFilledImage.SetNewState(currentPoints);
+        _healthFilledImage.SetNewState(currentPoints);
     }
 
     private void ActivePauseMenu()
